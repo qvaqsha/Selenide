@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.seleniumhq.selenium:selenium-json:4.3.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-json/4.3.0/99400adf539f028b806a1e3061f65b81c7d00cdd/selenium-json-4.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-json/4.3.0/746e8d47d0ce87cc7da3311131424161bde5d241/selenium-json-4.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
