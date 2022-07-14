@@ -13,7 +13,12 @@ import java.util.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class Report {
     private Map<String, Object> vars;
-
+    public String typeId = "4";
+    public String organizationId = "3";
+    public String authorId = "3";
+    public String shortName = "Short name field";
+    public String fullName = "Full name field";
+    public String summary = "Summary field";
 
     @BeforeEach
     public void setUp() {
@@ -49,8 +54,43 @@ public class Report {
     @Order(4)
     void inputAuthor() {
         $("#AuthorIds").click();
-        $(byXpath("//tr[3]/td[1]")).click();
+        sleep(500);
+        $(byXpath("//tr[" + authorId + "]/td[1]")).click();
         $$(".dx-button-text").findBy(text("Выбрать")).click();
-        sleep(2000);
+        sleep(200);
     }
+
+    @Test
+    @Order(5)
+    void selectType() {
+        $("#TypeId").click();
+        sleep(100);
+        $(".dx-item:nth-child(3)").click();
+    }
+
+    @Test
+    @Order(6)
+    void selectOrganization() {
+        $("#executing-organization").click();
+        sleep(100);
+        String controlContent = $("#ExecutingOrganizationId").getAttribute("aria-controls"); //запись временного id в переменную
+        $(byId(controlContent)).find(".dx-item", 3).click(); //поиск нужного в блоке с временным id
+    }
+
+    @Test
+    @Order(7)
+    void inputNumber() {
+        $("#InventoryNumber").val("33333");
+        $(byName("ShortName")).val(shortName);
+        $("#Name").val(fullName);
+        $("#Summary").val(summary);
+    }
+
+    @Test
+    @Order(8)
+    @Disabled
+    void downloadFile() {
+        $("#File").val("C:\\97KT027.pdf");
+    }
+
 }
