@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Order;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Condition.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.*;
 
@@ -88,9 +89,16 @@ public class Report {
 
     @Test
     @Order(8)
-    @Disabled
     void downloadFile() {
-        $("#File").val("C:\\97KT027.pdf");
+        $("#File").scrollIntoView(true);
+        $(byName("File")).val("C:\\97KT027.pdf");
+    }
+
+    @Test
+    @Order(9)
+    void submit() {
+        $("#submit-form-header-save-btn").click();
+        assertEquals(title(), "Сейсмические отчёты");
     }
 
 }
