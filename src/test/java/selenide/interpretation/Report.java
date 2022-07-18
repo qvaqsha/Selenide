@@ -14,12 +14,15 @@ import java.util.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class Report {
     private Map<String, Object> vars;
-    public String typeId = "4";
-    public String organizationId = "3";
+    public String login = "sovkovve";
+    public String pass = "SOVKOVVE";
+    public int typeId = 4;
+    public int organizationId = 3;
     public String authorId = "3";
     public String shortName = "Short name field";
     public String fullName = "Full name field";
     public String summary = "Summary field";
+    public String InventoryNumber = "3341123";
 
     @BeforeEach
     public void setUp() {
@@ -29,18 +32,17 @@ public class Report {
 
     @Test
     @Order(1)
-//Авторизация
+        //Авторизация
     void authorization() {
         open("https://rn-sdc.dmdevelopment.ru//Account/Login?ReturnUrl=%2F");
-//        WebDriverRunner.getWebDriver().manage().window().setSize(new Dimension(1500, 1020));
-        $(byName("Login")).val("sovkovve");
-        $(byName("Password")).val("SOVKOVVE");
+        $(byName("Login")).val(login);
+        $(byName("Password")).val(pass);
         $(".dx-button-text").click();
     }
 
     @Test
     @Order(2)
-//Вход в Интерпретационные проекты
+        //Вход в Интерпретационные проекты
     void goToReport() {
         $(".col-2:nth-child(1) .position-absolute").click();
     }
@@ -53,6 +55,7 @@ public class Report {
 
     @Test
     @Order(4)
+        //Выбор автора отчёта
     void inputAuthor() {
         $("#AuthorIds").click();
         sleep(500);
@@ -63,25 +66,28 @@ public class Report {
 
     @Test
     @Order(5)
+        //Выбор типа отчёта
     void selectType() {
         $("#TypeId").click();
         sleep(100);
-        $(".dx-item:nth-child(3)").click();
+        $(".dx-item:nth-child(" + typeId + ")").click();
     }
 
     @Test
     @Order(6)
+        //Выбор организации
     void selectOrganization() {
         $("#executing-organization").click();
         sleep(100);
         String controlContent = $("#ExecutingOrganizationId").getAttribute("aria-controls"); //запись временного id в переменную
-        $(byId(controlContent)).find(".dx-item", 3).click(); //поиск нужного в блоке с временным id
+        $(byId(controlContent)).find(".dx-item", organizationId).click(); //поиск нужного в блоке с временным id
     }
 
     @Test
     @Order(7)
+        //Заполнение полей наименования и реферата
     void inputNumber() {
-        $("#InventoryNumber").val("33333");
+        $("#InventoryNumber").val(InventoryNumber);
         $(byName("ShortName")).val(shortName);
         $("#Name").val(fullName);
         $("#Summary").val(summary);
@@ -89,6 +95,7 @@ public class Report {
 
     @Test
     @Order(8)
+        //Загрузка файла
     void downloadFile() {
         $("#File").scrollIntoView(true);
         $(byName("File")).val("C:\\97KT027.pdf");
@@ -96,6 +103,7 @@ public class Report {
 
     @Test
     @Order(9)
+        //Сохранение и проверка редиректа на страницу сейсм отчёты
     void submit() {
         $("#submit-form-header-save-btn").click();
         assertEquals(title(), "Сейсмические отчёты");
