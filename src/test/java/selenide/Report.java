@@ -1,4 +1,4 @@
-package selenide.interpretation;
+package selenide;
 
 import com.codeborne.selenide.*;
 import org.junit.jupiter.api.*;
@@ -13,6 +13,7 @@ import java.util.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class Report {
+
     private Map<String, Object> vars;
     public String login = "sovkovve";
     public String pass = "SOVKOVVE";
@@ -34,17 +35,16 @@ public class Report {
     @Order(1)
         //Авторизация
     void authorization() {
-        open("https://rn-sdc.dmdevelopment.ru//Account/Login?ReturnUrl=%2F");
-        $(byName("Login")).val(login);
-        $(byName("Password")).val(pass);
-        $(".dx-button-text").click();
+        Login login = new Login();
+        login.authorization(1);
+        $(byTitle("Домашняя страница")).shouldBe(visible);
     }
 
     @Test
     @Order(2)
-        //Вход в Интерпретационные проекты
+        //Вход в сейсмические отчёты
     void goToReport() {
-        $(".col-2:nth-child(1) .position-absolute").click();
+        $(byAttribute("href", "/Report")).click();
     }
 
     @Test
@@ -108,5 +108,4 @@ public class Report {
         $("#submit-form-header-save-btn").click();
         assertEquals(title(), "Сейсмические отчёты");
     }
-
 }

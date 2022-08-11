@@ -1,4 +1,4 @@
-package selenide.interpretation;
+package selenide;
 
 import com.codeborne.selenide.*;
 
@@ -10,17 +10,11 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-import org.openqa.selenium.Dimension;
-
-
 import java.util.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class Interpretation {
     private Map<String, Object> vars;
-    public String login = "sovkovve";
-    public String pass = "SOVKOVVE";
     String projectName = "Selenide";
     String datumLevel = "33";
     int reportNum = 1;
@@ -38,12 +32,10 @@ class Interpretation {
 //Авторизация
 
     public void authorization() {
-        open("https://rn-sdc-newdb.dmdevelopment.ru//Account/Login?ReturnUrl=%2F");
-        $(byName("Login")).val(login);
-        $(byName("Password")).val(pass);
-        $(".dx-button-text").click();
+        Login login = new Login();
+        login.authorization(6);
+        $(byTitle("Домашняя страница")).shouldBe(visible);
     }
-
 
     @Test
     @Order(2)
@@ -148,7 +140,6 @@ class Interpretation {
 
     @Test
     @Order(5)
-
 //Добавляем бинарник в данные ип
     public void binFile() {
         $(byXpath("//span[contains(text(),\'Данные интерпретационного проекта\')]")).click();
