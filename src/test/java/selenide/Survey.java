@@ -49,7 +49,9 @@ public class Survey {
     @Order(3)
     void selectSurveyType() {
         SurveyId_1 land2d = new SurveyId_1();
-        land2d.l2DSurveyCreate();
+//        land2d.l2DSurveyCreate();
+//        land2d.l2dSampleCreate(2);
+        land2d.l3dSurveyCreate();
     }
 
 }

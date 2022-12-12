@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.seleniumhq.selenium:selenium-manager:4.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-manager/4.6.0/d18ae15e5b0dc1e5aa7df6d276fec0fd7251a756/selenium-manager-4.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-manager/4.6.0/52e258a074e6b5b41885ff8a1d2c357b18bd60c/selenium-manager-4.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
